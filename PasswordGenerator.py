@@ -9,15 +9,17 @@ clicked = IntVar()
 clicked.set(5)
 
 numchk = IntVar()
+spcheck = IntVar()
 
 def generatePassword():
     copyConfirm.config(text="") # TODO: temp solution, should be in copyPassword function
     password = ''.join(random.choice(string.ascii_letters) for x in range(clicked.get()))
 
-    # TODO: add numbers to password generation
-
     if numchk.get() == 1:
         password = ''.join(random.choice(string.ascii_letters + string.digits) for x in range(clicked.get()))
+
+    if spcheck.get() == 1:
+        password = ''.join(random.choice(string.ascii_letters + string.punctuation) for x in range(clicked.get()))
 
     passwordLabel.config(text=password)
 
@@ -32,7 +34,7 @@ copyPasswordBtn = Button(root, text="Copy Password", command=copyPassword)
 copyConfirm = Label(root, text="")
 
 numberChkBtn = Checkbutton(root, text="Include Numbers (0-9)", variable=numchk, onvalue=1, offvalue=0)
-# specialCharChkBtn = Checkbutton(root, text="Include Special Characters")
+specialCharChkBtn = Checkbutton(root, text="Include Special Characters", variable=spcheck, onvalue=1, offvalue=0)
 passwordLength = OptionMenu(root, clicked, 5, 6, 7, 8, 9, 10)
 
 passwordLabel.pack()
@@ -40,7 +42,7 @@ generatePasswordBtn.pack()
 copyPasswordBtn.pack()
 copyConfirm.pack()
 numberChkBtn.pack()
-# specialCharChkBtn.pack()
+specialCharChkBtn.pack()
 passwordLength.pack()
 
 root.mainloop()
