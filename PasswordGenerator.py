@@ -6,7 +6,7 @@ root = Tk()
 password = ''
 
 clicked = IntVar()
-clicked.set(5)
+clicked.set(8)
 
 numchk = IntVar()
 spcheck = IntVar()
@@ -29,20 +29,23 @@ def copyPassword():
     copyConfirm.config(text="Password Copied")
     
 passwordLabel = Label(root, text=password.join(random.choice(string.ascii_letters) for x in range(clicked.get())))                       
-generatePasswordBtn = Button(root, text="Generate Password", command=generatePassword)
-copyPasswordBtn = Button(root, text="Copy Password", command=copyPassword)
+generatePasswordBtn = Button(root, text="Generate Password", command=generatePassword, padx=20)
+copyPasswordBtn = Button(root, text="Copy Password", command=copyPassword, padx=29)
 copyConfirm = Label(root, text="")
 
 numberChkBtn = Checkbutton(root, text="Include Numbers (0-9)", variable=numchk, onvalue=1, offvalue=0)
 specialCharChkBtn = Checkbutton(root, text="Include Special Characters", variable=spcheck, onvalue=1, offvalue=0)
-passwordLength = OptionMenu(root, clicked, 5, 6, 7, 8, 9, 10)
+passwordLength = OptionMenu(root, clicked, 8, 9, 10, 11, 12, 13, 14, 15)
+passwordLengthLabel = Label(root, text="Password Length:")
 
-passwordLabel.pack()
-generatePasswordBtn.pack()
-copyPasswordBtn.pack()
-copyConfirm.pack()
-numberChkBtn.pack()
-specialCharChkBtn.pack()
-passwordLength.pack()
+
+passwordLabel.grid(row=0, column=0)
+generatePasswordBtn.grid(row=1, column=0)
+copyPasswordBtn.grid(row=2, column=0)
+copyConfirm.grid(row=3, column=0)
+passwordLengthLabel.grid(row=4, column=0)
+passwordLength.grid(row=5, column=0)
+numberChkBtn.grid(row=6, column=0)
+specialCharChkBtn.grid(row=7, column=0)
 
 root.mainloop()
